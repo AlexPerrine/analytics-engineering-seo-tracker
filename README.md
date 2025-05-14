@@ -36,9 +36,6 @@ The goal is to empower Kristen Elizabeth Photography — a high-end family and s
 <li> Page metadata scrapped and enriched using Python or Spark</li>
 <li> Semrush keywords loaded and matched to blog metadata</li>
 <li> dbt builds final models</li>
-    <ol>
-   <li> `fact_page_views`, `dim_page_content`, `dim_keywords`, `dim_device`, `dim_traffic_source`</li>
-    </ol>
 <li> KPIs exposed via dbt models and visualized in a BI tool (not sure which yet.)</li>
 </ol>
 
