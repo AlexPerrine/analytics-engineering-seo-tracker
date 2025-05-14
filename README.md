@@ -31,12 +31,16 @@ The goal is to empower Kristen Elizabeth Photography — a high-end family and s
 | **Spark**     | (Optional) Enrich page metadata or process large keyword joins      |
 
 ## Workflow
-**1.** Live Google Analytics data ingestion daily into Iceberg
-**2.** Page metadata scrapped and enriched using Python or Spark
-**3.** Semrush keywords loaded and matched to blog metadata
-**4.** dbt builds final models
-    `fact_page_views`, `dim_page_content`, `dim_keywords`, `dim_device`, `dim_traffic_source`
-**5.** KPIs exposed via dbt models and visualized in a BI tool (not sure which yet.)
+<ol>
+<li> Live Google Analytics data ingestion daily into Iceberg</li>
+<li> Page metadata scrapped and enriched using Python or Spark</li>
+<li> Semrush keywords loaded and matched to blog metadata</li>
+<li> dbt builds final models</li>
+    <ol>
+   <li> `fact_page_views`, `dim_page_content`, `dim_keywords`, `dim_device`, `dim_traffic_source`</li>
+    </ol>
+<li> KPIs exposed via dbt models and visualized in a BI tool (not sure which yet.)</li>
+</ol>
 
 Note. The I have joined the Data Engineering bootcamp that follows this and will add inquiry tracking and keyword gap analysis using Google Keyword Planner data.
 
