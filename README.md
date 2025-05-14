@@ -10,14 +10,15 @@ The goal is to empower Kristen Elizabeth Photography, a high end family and seni
 
 ## Datasets and Technologies
 
-###  atasets
+### Datasets
 
 | Source               | Description                                                                 | Format                              | Phase              |
 |----------------------|-----------------------------------------------------------------------------|-------------------------------------|--------------------|
-| **Google Analytics** | Pageview/session data with traffic source, device info, and engagement      | CSV exports (simulated GA4 format)  | AE                 |
+| **Google Analytics** | Live pageview/session data with traffic source, device info, and engagement | API-connected or BigQuery export    | AE (Live)          |
 | **Semrush Keywords** | Keyword search volume, difficulty, and intent                               | CSV                                 | AE                 |
 | **Web Metadata**     | Scraped blog titles, publish dates, meta descriptions, and word count       | Python script output (JSON or CSV)  | AE                 |
-| **Form Submissions** | Inquiry data (e.g., from HoneyBook or Squarespace)                          | CSV or export                       | *Planned for DE*   |
+| **Google Keyword Planner** | Live SEO keyword                        | CSV or export                       | *Planned for DE Phase*            | *Planned for DE*   |
+| **Form Submissions** | Inquiry data (e.g., from HoneyBook or Squarespace)                          | *Planned for DE Phase*                       | *Planned for DE*   |
 
 ### Technologies
 
