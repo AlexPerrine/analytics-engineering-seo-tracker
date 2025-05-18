@@ -2,6 +2,7 @@ import os
 import datetime
 import logging
 import datetime
+from pprint import pprint
 from dotenv import load_dotenv
 from google.analytics.data_v1beta import BetaAnalyticsDataClient
 from google.analytics.data_v1beta.types import RunReportRequest, DateRange, Dimension, Metric
@@ -12,9 +13,9 @@ load_dotenv()
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-def fetch_g4a_page_data(start_date: str, end_date: str):
+def fetch_g4a_engagement_data(start_date: str, end_date: str):
         """
-        Fetches Google Analytics pageview data between start_date and end_date inclusive
+        Fetches Google Analytics engagement data between start_date and end_date inclusive
         Adds a 'loaded_date' field with the date it was pulled from GA
         Args:
             start_date (str): 'YYYY-MM-DD'
@@ -35,19 +36,18 @@ def fetch_g4a_page_data(start_date: str, end_date: str):
         dimensions=[
             Dimension(name="date"),
             Dimension(name="pagePath"),
-            Dimension(name="landingPage"),
-            Dimension(name="landingPagePlusQueryString"),
             Dimension(name="pageTitle"),
+            Dimension(name="dateHourMinute"),
+            Dimension(name="eventName"),
             Dimension(name="sessionSource"),
-            Dimension(name="sessionMedium"),
-            Dimension(name="pageReferrer")
+            Dimension(name="sessionMedium")
             ]
 
         metrics=[
-            Metric(name="screenPageViews"),
-            Metric(name="sessions"),
-            Metric(name="totalUsers"),
-            Metric(name="newUsers"),
+            Metric(name="eventCount"),
+            Metric(name="engagedSessions"),
+            Metric(name="bounceRate"),
+            Metric(name="averageSessionDuration"),
             Metric(name="userEngagementDuration")
             ]
         
@@ -68,17 +68,11 @@ def fetch_g4a_page_data(start_date: str, end_date: str):
             record={dim.name:row.dimension_values[i].value for i, dim in enumerate(dimensions)}
             for j,met in enumerate(metrics):
                 val=row.metric_values[j].value
-                try:
-                    if val.isdigit():
-                        record[met.name] = int(val)
-                    else:
-                        record[met.name] = float(val)
-                except (ValueError, TypeError):
-                        record[met.name] = None
+                record[met.name]=float(val) if '.' in val else int(val)
             record["date"] = datetime.datetime.strptime(record["date"], "%Y%m%d").date()
             record["loaded_date"] = datetime.date.today() - datetime.timedelta(days=1)
             rows.append(record)
                   
 
-        logger.info(f"Page pulled {len(rows)} rows from GA4 for {start_date} to {end_date}")
+        logger.info(f"User pulled {len(rows)} rows from GA4 for {start_date} to {end_date}")
         return rows
