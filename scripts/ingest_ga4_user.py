@@ -10,12 +10,12 @@ from pyiceberg.schema import Schema
 from pyiceberg.types import *
 from pyiceberg.partitioning import PartitionSpec, PartitionField
 from pyiceberg.transforms import DayTransform
-from scripts.fetch_ga4_user import fetch_g4a_user_data
+from scripts.fetch_ga4_user import fetch_ga4_user_data
 
 load_dotenv()
 print("Starting GA4 Pageviews ingestion...")
 
-def ingest_g4a_user_data():
+def ingest_ga4_user_data(start_date: str, end_date: str):
     """
     Loads GA4 user-level metrics from the Reporting API and writes them to Iceberg.
 
@@ -24,10 +24,10 @@ def ingest_g4a_user_data():
     """
 
     # Getting GA4 data for May
-    rows = fetch_g4a_user_data(start_date='2025-01-01', end_date='2025-05-16')
+    rows = fetch_ga4_user_data(start_date=start_date, end_date=end_date)
 
     if not rows:
-        print('No Google Analytics page data found for selected range. Skipping ingestion')
+        print('No Google Analytics user data found for selected range. Skipping ingestion')
         return
     
     for row in rows:
@@ -86,5 +86,7 @@ def ingest_g4a_user_data():
     else:
         print(f"'audit' branch already exists or no snapshot found")
 
-if __name__ =="__main__":
-    ingest_g4a_user_data()
+if __name__ == "__main__":
+    start = os.getenv("START_DATE")
+    end = os.getenv("END_DATE")
+    ingest_ga4_user_data(start, end)

@@ -12,7 +12,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
-def fetch_g4a_page_data(start_date: str, end_date: str):
+def fetch_ga4_page_data(start_date: str, end_date: str):
     """
     Fetches Google Analytics pageview data between start_date and end_date inclusive.
     Adds a 'loaded_date' field with the date it was pulled from GA.

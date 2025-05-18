@@ -10,12 +10,12 @@ from pyiceberg.schema import Schema
 from pyiceberg.types import *
 from pyiceberg.partitioning import PartitionSpec, PartitionField
 from pyiceberg.transforms import DayTransform
-from scripts.fetch_ga4_page import fetch_g4a_page_data
+from scripts.fetch_ga4_page import fetch_ga4_page_data
 
 load_dotenv()
 print("Starting GA4 Pageviews ingestion...")
 
-def ingest_g4a_page_data(start_date, end_date):
+def ingest_ga4_page_data(start_date, end_date):
     """
     Loads GA4 page-level metrics from the Reporting API and writes them to Iceberg.
 
@@ -24,7 +24,7 @@ def ingest_g4a_page_data(start_date, end_date):
     """
 
     # Getting GA4 data
-    rows = fetch_g4a_page_data(start_date=start_date, end_date=end_date)
+    rows = fetch_ga4_page_data(start_date=start_date, end_date=end_date)
 
     if not rows:
         print('No Google Analytics page data found for selected range. Skipping ingestion')
@@ -89,4 +89,4 @@ def ingest_g4a_page_data(start_date, end_date):
 if __name__ == "__main__":
     start = os.getenv("START_DATE")
     end = os.getenv("END_DATE")
-    ingest_g4a_page_data(start, end)
+    ingest_ga4_page_data(start, end)
