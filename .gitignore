@@ -3,6 +3,6 @@ secrets/
 .env
 venv/
 __pycache__/
-secrets/
+project_secrets/
 
 .DS_Store
