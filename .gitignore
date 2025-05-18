@@ -1,8 +1,7 @@
-secrets/
+project_secrets/
 *.json
 .env
 venv/
 __pycache__/
-project_secrets/
 
 .DS_Store
