@@ -1,22 +1,37 @@
-cachetools==5.5.2
-certifi==2025.4.26
-charset-normalizer==3.4.2
-boto3
+# Airflow Providers
+apache-airflow-providers-trino==5.7.0
+apache-airflow-providers-snowflake
+
+# Orchestration and dbt
+astronomer-cosmos
+dbt-core==1.9.0b3
+dbt-snowflake==1.8.4
+sqlfluff==3.0.6
+
+# Google Analytics
 google-analytics-data==0.18.18
 google-api-core==2.24.2
 google-auth==2.40.1
 googleapis-common-protos==1.70.0
-grpcio==1.72.0rc1
-grpcio-status==1.72.0rc1
-idna==3.10
 proto-plus==1.26.1
-protobuf==6.31.0rc2
-pyasn1==0.6.1
-pyasn1_modules==0.4.2
-python-dotenv==1.1.0
-requests==2.32.3
-rsa==4.9.1
-urllib3==2.4.0
-pyiceberg
+grpcio==1.72.0rc1
+grpcio-status==1.51.3
+
+# AWS + Secrets
+boto3
+
+# Iceberg & data processing
 pyiceberg[s3fs,pyarrow]
 pyarrow
+
+# Utilities
+python-dotenv==1.1.0
+requests==2.32.3
+urllib3==2.4.0
+cachetools==5.5.2
+certifi==2025.4.26
+charset-normalizer==3.4.2
+idna==3.10
+rsa==4.9.1
+pyasn1==0.6.1
+pyasn1_modules==0.4.2

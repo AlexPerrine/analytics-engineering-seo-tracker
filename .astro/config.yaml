@@ -1,0 +1,16 @@
+project:
+    name: analytics-engineer-seo-tracker
+skip_parse: false
+verbosity: debug
+webserver:
+    port: "8082"
+postgres:
+    port: "5432"
+env:
+    AIRFLOW__CORE__LOAD_EXAMPLES: "False"
+python:
+  packages:
+    - google-analytics-data
+    - pyarrow
+    - boto3
+    - python-dotenv

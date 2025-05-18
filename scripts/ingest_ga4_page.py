@@ -15,7 +15,7 @@ from scripts.fetch_ga4_page import fetch_g4a_page_data
 load_dotenv()
 print("Starting GA4 Pageviews ingestion...")
 
-def ingest_g4a_page_data():
+def ingest_g4a_page_data(start_date, end_date):
     """
     Loads GA4 page-level metrics from the Reporting API and writes them to Iceberg.
 
@@ -23,8 +23,8 @@ def ingest_g4a_page_data():
     and tags each row with source metadata. Used for manual backfills or Airflow DAGs.
     """
 
-    # Getting GA4 data for May
-    rows = fetch_g4a_page_data(start_date='2025-01-01', end_date='2025-05-16')
+    # Getting GA4 data
+    rows = fetch_g4a_page_data(start_date=start_date, end_date=end_date)
 
     if not rows:
         print('No Google Analytics page data found for selected range. Skipping ingestion')
@@ -86,5 +86,7 @@ def ingest_g4a_page_data():
     else:
         print(f"'audit' branch already exists or no snapshot found")
 
-if __name__ =="__main__":
-    ingest_g4a_page_data()
+if __name__ == "__main__":
+    start = os.getenv("START_DATE")
+    end = os.getenv("END_DATE")
+    ingest_g4a_page_data(start, end)
