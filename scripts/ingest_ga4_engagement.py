@@ -10,12 +10,12 @@ from pyiceberg.schema import Schema
 from pyiceberg.types import *
 from pyiceberg.partitioning import PartitionSpec, PartitionField
 from pyiceberg.transforms import DayTransform
-from scripts.fetch_ga4_engagement import fetch_g4a_engagement_data
+from scripts.fetch_ga4_engagement import fetch_ga4_engagement_data
 
 load_dotenv()
 print("Starting GA4 Pageviews ingestion...")
 
-def ingest_g4a_engagement_data():
+def ingest_ga4_engagement_data(start_date: str, end_date: str):
     """
     Loads GA4 egagement-level metrics from the Reporting API and writes them to Iceberg.
 
@@ -24,7 +24,7 @@ def ingest_g4a_engagement_data():
     """
 
     # Getting GA4 data for May
-    rows = fetch_g4a_engagement_data(start_date='2025-01-01', end_date='2025-05-16')
+    rows = fetch_ga4_engagement_data(start_date=start_date, end_date=end_date)
 
     if not rows:
         print('No Google Analytics page data found for selected range. Skipping ingestion')
@@ -86,4 +86,6 @@ def ingest_g4a_engagement_data():
         print(f"'audit' branch already exists or no snapshot found")
 
 if __name__ =="__main__":
-    ingest_g4a_engagement_data()
+    start = os.getenv("START_DATE")
+    end = os.getenv("END_DATE")
+    ingest_ga4_engagement_data(start, end)
