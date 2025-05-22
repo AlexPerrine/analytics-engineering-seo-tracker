@@ -10,8 +10,43 @@ renamed as (
         newusers,
         pagepath,
         pagereferrer,
+        case
+            when pagereferrer like '%google.com%' then 'google_search'
+            when lower(pagereferrer) like '%gclid=%' then 'paid_google_search'
+            when pagereferrer like '%instagram.com%' then 'instagram'
+            when lower(pagereferrer) like '%featured-links%' then 'instagram'
+            when lower(pagereferrer) like '%quick-links%' then 'instagram'
+            when pagereferrer like '%facebook.com%' then 'facebook'
+            when lower(pagereferrer) like '%fbclid=%' then 'facebook'
+            when pagereferrer like '%pinterest.com%' then 'pinterest'
+            when pagereferrer like '%linkedn.com%' then 'linkedin'
+            when pagereferrer like '%yelp.com%' then 'yelp'
+            when pagereferrer like '%stan.store%' then 'product_sales'
+            when pagereferrer like '%semrush.com%' then 'site_development'
+            when pagereferrer like '%showit%' then 'site_development'
+            when pagereferrer like '%pic-time%' then 'site_development'
+            else 'other'
+        end as referrer_platform,
         pagetitle,
+        case
+            when lower(pagetitle) like  '%blog%' then 'blog'
+            when pagepath like '/' then 'home_page'
+            when pagepath like '/home' then 'home_page'
+            when pagepath like '/about' then 'about_page'
+            when pagepath like '/contact' then 'contact_page'
+            when pagepath like '/family-photography' then 'family_page'
+            when pagepath like '/headshot-and-branding-photography' then 'branding_page'
+            when pagepath like '/maternity-and-newborn-photography' then 'maternity_page'
+            when pagepath like '/mini-sessions' then 'minis_page'
+            when pagepath like '/senior-pictures' then 'seniors_page'
+            else 'other'
+        end as pagetype,
         screenpageviews,
+        case 
+            when screenpageviews >= 3 then 'engaged'
+            when screenpageviews = 1 then 'bounce'
+            else 'light'
+        end as session_quality,
         sessionmedium,
         sessions,
         sessionsource,
@@ -20,6 +55,7 @@ renamed as (
         loaded_date,
         source_system
     from source
+    WHERE sessionSource != 'leadsgo.io' OR userEngagementDuration < 3600
 )
 
 select * from renamed
