@@ -75,6 +75,6 @@ def ingest_ga4_engagement_dag():
 
     post_ingestion = EmptyOperator(task_id="post_ingestion_successful")
 
-    test_connection >> pre_ingestion >> check_data_task >> check_user_schema_task >> ingestion_task >> post_ingestion
+    test_connection >> pre_ingestion >> check_data_task >> check_user_schema_task >> ingestion_task >> post_ingestion 
 
 ingest_ga4_engagement_dag()

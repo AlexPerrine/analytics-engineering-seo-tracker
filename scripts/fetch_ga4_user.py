@@ -76,8 +76,12 @@ def fetch_ga4_user_data(start_date: str, end_date: str):
         record["loaded_date"] = loaded_date
         record["date"] = datetime.datetime.strptime(record["date"], "%Y%m%d").date()
         record["loaded_date"] = datetime.date.today() - datetime.timedelta(days=1)
-        if record["firstSessionDate"] != "(not set)":
-            record["firstSessionDate"] = datetime.datetime.strptime(record["firstSessionDate"], "%Y%m%d").date()
+        raw_value = record.get("firstSessionDate", "")
+        if raw_value and raw_value != "(not set)":
+            try:
+                record["firstSessionDate"] = datetime.datetime.strptime(raw_value, "%Y%m%d").date()
+            except ValueError:
+                record["firstSessionDate"] = record["date"]
         else:
             record["firstSessionDate"] = record["date"]
         rows.append(record)

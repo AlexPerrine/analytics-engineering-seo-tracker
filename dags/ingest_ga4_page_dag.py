@@ -72,6 +72,7 @@ def ingest_ga4_pageviews_dag():
         python_callable=run_ingestion,
         provide_context=True,
     )
+    
 
     post_ingestion = EmptyOperator(task_id="post_ingestion_successful")
 

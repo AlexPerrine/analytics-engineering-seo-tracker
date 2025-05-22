@@ -1,0 +1,107 @@
+version: 2
+
+sources:
+  - name: alexperrine
+    database: dataexpert_student
+    schema: alexperrine
+    tables:
+      - name: raw_ga_pageviews 
+      - name: raw_ga_users
+      - name: raw_ga_engagement
+
+models:
+  - name: stg_ga4_pageviews
+    description: "staging model for GA4 Pageview level metrics with cleaned field names"
+    columns:
+      - name: pageview_date
+        description: "The date of the recorded GA4 activity"
+      - name: landingpage
+        description: "Landing page URL path without query string"
+      - name: landingpageplusquerystring
+        description: "Full landing page URL including query parameters"
+      - name: newusers
+        description: "Count of the new users for the row context"
+      - name: pagepath
+        description: "URL path of the viewed page"
+      - name: pagereferrer
+        description: "URL that led to the page view"
+      - name: pagetitle
+        description: "Title of the viewed page"
+      - name: screenpageviews
+        description: "Number of screen pageviews"
+      - name: sessionmedium
+        description: "Marketing medium that led to the session"
+      - name: sessions
+        descrtiption: "Total number of sessions for this dimension combo"
+      - name: sessionsource
+        description: "Marketing source that led to the session"
+      - name: totalusers
+        description: "Count of total users for the row context"
+      - name: userengagementduration
+        description: "Total engagement time in seconds"
+      - name: loaded_date
+        description: "Date the record was loaded into the warehouse"
+      - name: source_system
+        description: "Origin system of the data, Google Analytics Data API"
+
+  - name: stg_ga4_users
+    description: "staging model for GA4 user level metrics with cleaned field names"
+    columns:
+      - name: event_date
+        description: "The date of the user record"
+      - name: firstsessiondate
+        description: "The first time the user was seen in GA4"
+      - name: city
+        description: "City from which the user accessed the site"
+      - name: region
+        description: "State/Province of the user"
+      - name: Browser
+        description: "User's web brower"
+      - name: devicecategory
+        description: "Device type (desktop, mobile, tablet)"
+      - name: operatingsystem
+        description: "Operating systen of the user's device"
+      - name: platform
+        description: "Platofrm or app used by the user"
+      - name: searchterm
+        descrtiption: "Search term used to reach the site"
+      - name: sessionsperuser
+        description: "Average number of sessions per user"
+      - name: engagementrate
+        description: "Percentage of engaged sessions per user"
+      - name: totalusers
+        description: "Total number of users in this record"
+      - name: loaded_date
+        description: "Date the record was loaded into the warehouse"
+      - name: source_system
+        description: "Origin system of the data, Google Analytics Data API"
+
+  - name: stg_ga4_engagement
+    description: "staging model for GA4 engagement level metrics with cleaned field names"
+    columns:
+      - name: event_date
+        description: "The date of the user record"
+      - name: datehourminute
+        description: "Timestamp of the event to the minute"
+      - name: pagepath
+        description: "Path of the page where the event occured"
+      - name: pagetitle
+        description: "Title of the page where the event occured"
+      - name: sessioncampaignid
+        description: "Campaign ID tied ot the session"
+      - name: eventname
+        description: "Type of event"
+      - name: sessionsource
+        description: "Marketing source that led to the session"
+      - name: eventcount
+        description: "Number of times the event occured"
+      - name: engagedsessions
+        description: "Number of session that were considered engaged"
+      - name: averagesessionduration
+        description: "Average duration of a session in seconds"
+      - name: userengagementduration
+        description: "Amount of time the user was actively engaged"
+      - name: loaded_date
+        description: "Date the record was loaded into the warehouse"
+      - name: source_system
+        description: "Origin system of the data, Google Analytics Data API"
