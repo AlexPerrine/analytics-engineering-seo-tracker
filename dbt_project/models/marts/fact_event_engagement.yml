@@ -1,0 +1,41 @@
+version: 2
+
+models:
+  - name: fact_event_engagement
+    description: |
+      Event-level fact table summarizing engagement activity by page, event type, and hour of day.
+      Supports event funnel analysis and hourly behavioral insights.
+    columns:
+      - name: event_date
+        description: "Date of the event (YYYY-MM-DD)."
+        tests:
+          - not_null
+      - name: event_hour
+        description: "Hour of the event (24-hour format, e.g., 14 for 2 PM)."
+        tests:
+          - not_null
+      - name: pagepath
+        description: "The URL slug of the page where the event occurred."
+      - name: pagetitle
+        description: "Title of the page where the event occurred."
+      - name: eventtype
+        description: "Classification of the event (e.g., passive, active, conversion)."
+        tests:
+          - accepted_values:
+              values: ['passive', 'active', 'conversion', 'other']
+      - name: session_channel
+        description: "Traffic source or channel driving the session (e.g., organic_search, paid_search, social)."
+      - name: event_time_bucket
+        description: "Time-of-day bucket when the event occurred (e.g., morning, afternoon, evening)."
+      - name: total_events
+        description: "Total number of events in this grouping (sum of eventcount)."
+      - name: total_engaged_sessions
+        description: "Number of engaged sessions associated with this grouping."
+      - name: avg_engagement_duration
+        description: "Average engagement duration (in seconds) for these events."
+      - name: bounce_rate
+        description: "Average bounce rate for these events."
+      - name: top_source_channel
+        description: "Most common source channel for these events."
+      - name: top_content_theme
+        description: "Top content theme (e.g., senior, maternity, family) for these events."

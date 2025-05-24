@@ -1,0 +1,43 @@
+version: 2
+
+models:
+  - name: fact_user_sessions
+    description: |
+      Daily-level fact table summarizing user engagement and session-level behavior.
+      Includes device and platform details, engagement tiers, recency segments, and source attribution.
+    columns:
+      - name: session_date
+        description: "Date of the session (YYYY-MM-DD)."
+        tests:
+          - not_null
+      - name: city
+        description: "City of the user during the session."
+      - name: region
+        description: "Region or state of the user during the session."
+      - name: devicecategory
+        description: "Device category (e.g., mobile, desktop, tablet)."
+      - name: operatingSystem
+        description: "Operating system used in the session (e.g., iOS, Android, Windows)."
+      - name: platform
+        description: "Platform group used (e.g., web, app)."
+      - name: device_type
+        description: "Normalized device type (e.g., mobile, desktop)."
+      - name: sessionsperuser
+        description: "Number of sessions per user during the day."
+      - name: engagementrate
+        description: "Engagement rate for the user on that date."
+      - name: engagement_tier
+        description: "Bucketed engagement level for the user (e.g., high, medium, low)."
+      - name: totalusers
+        description: "Total number of users for this session-date group."
+      - name: activeusers
+        description: "Number of active users for this session-date group."
+      - name: user_recency_segment
+        description: "Classification of the user's recency (e.g., new, returning_week, returning_month, repeat_long_term)."
+        tests:
+          - accepted_values:
+              values: ['new', 'returning_week', 'returning_month', 'repeat_long_term']
+      - name: top_source_channel
+        description: "The most common source channel for the user's sessions (e.g., organic_search, paid_search, social)."
+      - name: top_session_quality
+        description: "The most common session quality tier for the user's sessions (e.g., engaged, light)."

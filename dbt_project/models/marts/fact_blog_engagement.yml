@@ -1,0 +1,42 @@
+version: 2
+
+models:
+  - name: fact_blog_engagement
+    description: |
+      Daily-level fact table that aggregates engagement metrics by blog page. Includes pageviews, engagement duration, bounce rate, top time-of-day bucket, referrer platform, and a custom engagement score for dashboarding.
+    columns:
+      - name: pageview_date
+        description: "Date of activity for the blog page (YYYY-MM-DD)."
+        tests:
+          - not_null
+      - name: pagepath
+        description: "The URL slug of the blog page."
+        tests:
+          - not_null
+      - name: pagetitle
+        description: "Title of the blog page."
+      - name: referrer_platform
+        description: "Top referring platform or source that brought users to this page (e.g., Facebook, Google, Instagram)."
+      - name: pagetype
+        description: "Classification of the page type (e.g., blog, homepage, gallery)."
+        tests:
+          - accepted_values:
+              values: ['blog', 'home_page', 'about_page', 'contact_page', 'family_page', 'branding_page', 'maternity_page', 'minis_page', 'seniors_page', 'other']
+      - name: total_pageviews
+        description: "Total number of pageviews for this page on that date."
+        tests:
+          - not_null
+      - name: total_engaged_sessions
+        description: "Total number of engaged sessions for the page on that date."
+      - name: avg_engagement_duration
+        description: "Average engagement duration (in seconds) for the page on that date."
+      - name: bounce_rate
+        description: "Average bounce rate for the page on that date."
+      - name: most_common_time_bucket
+        description: "The most common time-of-day bucket (e.g., morning, afternoon, evening) when activity occurred for this page."
+      - name: most_common_source
+        description: "The most common source or channel driving activity for this page (e.g., organic search, paid, social)."
+      - name: most_common_pagetype
+        description: "The most common page type (e.g., home_page, seniors_page)"
+      - name: engagement_score
+        description: "A custom engagement score calculated as total_pageviews * total_engaged_sessions to highlight highly engaging blog content."
