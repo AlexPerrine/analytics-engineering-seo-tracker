@@ -12,6 +12,10 @@ sources:
 models:
   - name: stg_ga4_pageviews
     description: "staging model for GA4 Pageview level metrics with cleaned field names"
+    config:
+      materialized: view
+      pre-hook:
+        - "ALTER ICEBERG TABLE alexperrine.raw_ga_pageviews REFRESH"
     columns:
       - name: pageview_date
         description: "The date of the recorded GA4 activity"
@@ -46,6 +50,10 @@ models:
 
   - name: stg_ga4_users
     description: "staging model for GA4 user level metrics with cleaned field names"
+    config:
+      materialized: view
+      pre-hook:
+        - "ALTER ICEBERG TABLE alexperrine.raw_ga_users REFRESH"
     columns:
       - name: event_date
         description: "The date of the user record"
@@ -78,6 +86,10 @@ models:
 
   - name: stg_ga4_engagement
     description: "staging model for GA4 engagement level metrics with cleaned field names"
+    config:
+      materialized: view
+      pre-hook:
+        - "ALTER ICEBERG TABLE alexperrine.raw_ga_engagement REFRESH"
     columns:
       - name: event_date
         description: "The date of the user record"
