@@ -21,7 +21,7 @@ models:
         description: "Classification of the page type (e.g., blog, homepage, gallery)."
         tests:
           - accepted_values:
-              values: ['blog', 'home_page', 'about_page', 'contact_page', 'family_page', 'branding_page', 'maternity_page', 'minis_page', 'seniors_page', 'other']
+              values: ['blog', 'home_page', 'about_page', 'contact_page', 'family_page', 'branding_page', 'maternity_page', 'minis_page', 'seniors_page','photograhers_page','faq_page', 'other']
       - name: total_pageviews
         description: "Total number of pageviews for this page on that date."
         tests:

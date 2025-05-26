@@ -6,3 +6,4 @@ logs/
 .venv
 airflow.db
 airflow.cfg
+dbt_project/dbt_packages

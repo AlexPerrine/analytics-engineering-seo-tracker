@@ -29,16 +29,24 @@ renamed as (
         end as referrer_platform,
         pagetitle,
         case
+            when pagepath = '/' then 'home_page'
             when lower(pagetitle) like  '%blog%' then 'blog'
-            when pagepath like '/' then 'home_page'
             when pagepath like '/home' then 'home_page'
             when pagepath like '/about' then 'about_page'
+            when pagepath like '/all-about-me/' then 'about_page'
             when pagepath like '/contact' then 'contact_page'
             when pagepath like '/family-photography' then 'family_page'
+            when pagepath like '/family-and-children-portraits/' then 'family_page'
             when pagepath like '/headshot-and-branding-photography' then 'branding_page'
-            when pagepath like '/maternity-and-newborn-photography' then 'maternity_page'
+            when pagepath like '/maternity-and-newborn-photography'then 'maternity_page'
+            when pagepath like '/maternity/' then 'maternity_page'
             when pagepath like '/mini-sessions' then 'minis_page'
             when pagepath like '/senior-pictures' then 'seniors_page'
+            when pagepath like '/seinor-pictures' then 'seniors_page'
+            when pagepath like '/senior-rep-team' then 'seniors_page'
+            when pagepath like '/senior-testimonials' then 'seniors_page'
+            when pagepath like '/for-photographers' then 'photograhers_page'
+            when pagepath like '/frequently-asked-questions/' then 'faq_page'
             else 'other'
         end as pagetype,
         screenpageviews,
