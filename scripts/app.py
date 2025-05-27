@@ -159,7 +159,7 @@ def fetch_referrer_platform_counts(start_date, end_date, pagetype=None):
 
 # Streamlit app layout
 st.set_page_config(page_title="Site Performance & User Behavior Insights", layout="wide")
-st.title("Site Performance & User Behavior Insightsr")
+st.title("Site Performance & User Behavior Insights")
 
 # Sidebar and Filters
 st.sidebar.header("Filters")
