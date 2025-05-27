@@ -7,6 +7,7 @@ select
     pageview_date,
     pagepath,
     pagetitle,
+    pagereferrer,
     referrer_platform,
     pagetype,
     total_pageviews,

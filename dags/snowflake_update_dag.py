@@ -43,21 +43,6 @@ def refresh_iceberg_tables_dag():
 
     start_refresh = EmptyOperator(task_id="start_refresh_marker")
 
-    def debug_airflow_connection():
-        from airflow.hooks.base import BaseHook
-        conn = BaseHook.get_connection("snowflake_conn")
-        print("Airflow Connection Debug:")
-        print("Host:", conn.host)
-        print("Schema:", conn.schema)
-        print("Login:", conn.login)
-        print("Password:", conn.password)
-        print("Extra JSON:", conn.extra_dejson)
-
-    debug_connection = PythonOperator(
-        task_id="debug_airflow_connection",
-        python_callable=debug_airflow_connection
-    )
-
     refresh_engagement = SQLExecuteQueryOperator(
         task_id="refresh_engagement_table",
         conn_id="snowflake_conn",  # Uses AIRFLOW_CONN_SNOWFLAKE_CONN from .env
@@ -76,6 +61,6 @@ def refresh_iceberg_tables_dag():
 
     end_refresh = EmptyOperator(task_id="end_refresh_marker")
 
-    test_connection >> start_refresh >> debug_connection >> refresh_engagement >> refresh_pageviews >> refresh_users >> end_refresh
+    test_connection >> start_refresh >> refresh_engagement >> refresh_pageviews >> refresh_users >> end_refresh
 
 refresh_iceberg_tables_dag()

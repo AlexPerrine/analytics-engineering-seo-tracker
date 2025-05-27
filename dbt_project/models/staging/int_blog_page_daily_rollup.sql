@@ -2,6 +2,7 @@ with pageviews as (
     select
         pageview_date,
         pagepath,
+        pagereferrer,
         pagetitle,
         sessionmedium,
         sessionsource,
@@ -30,6 +31,7 @@ select
     p.pageview_date,
     p.pagepath,
     p.pagetitle,
+    p.pagereferrer,
     p.referrer_platform,
     p.pagetype,
     sum(p.screenpageviews) as total_pageviews,
@@ -47,6 +49,7 @@ left join engagement as e
 group by
     p.pageview_date,
     p.pagepath,
+    p.pagereferrer,
     p.pagetitle,
     p.referrer_platform,
     p.pagetype

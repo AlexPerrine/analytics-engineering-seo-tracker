@@ -19,12 +19,13 @@ renamed as (
             when pagereferrer like '%facebook.com%' then 'facebook'
             when lower(pagereferrer) like '%fbclid=%' then 'facebook'
             when pagereferrer like '%pinterest.com%' then 'pinterest'
-            when pagereferrer like '%linkedn.com%' then 'linkedin'
+            when pagereferrer like '%linkedin.com%' then 'linkedin'
             when pagereferrer like '%yelp.com%' then 'yelp'
             when pagereferrer like '%stan.store%' then 'product_sales'
             when pagereferrer like '%semrush.com%' then 'site_development'
             when pagereferrer like '%showit%' then 'site_development'
             when pagereferrer like '%pic-time%' then 'site_development'
+            when lower(pagereferrer) like '%kristenelizabethphotography.co/%' then 'kep_site'
             else 'other'
         end as referrer_platform,
         pagetitle,
