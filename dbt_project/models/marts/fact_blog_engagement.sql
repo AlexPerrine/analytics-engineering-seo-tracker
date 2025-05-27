@@ -18,3 +18,4 @@ select
     most_common_pagetype,
     total_pageviews * total_engaged_sessions as engagement_score
 from daily_rollup
+where total_pageviews < 100

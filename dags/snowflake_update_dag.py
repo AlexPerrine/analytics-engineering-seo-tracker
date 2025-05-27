@@ -40,20 +40,23 @@ def refresh_iceberg_tables_dag():
         task_id="test_airflow_connection",
         bash_command="echo 'Airflow environment is reachable for Iceberg table refresh.'"
     )
-    def print_snowflake_config():
-        snowflake_conn = BaseHook.get_connection("snowflake_conn")
-        print("Host:", snowflake_conn.host)
-        print("Schema:", snowflake_conn.schema)
-        print("Login:", snowflake_conn.login)
-        print("Password:", snowflake_conn.password)
-        print("Extra:", snowflake_conn.extra_dejson)
-
-    print_conn_config = PythonOperator(
-        task_id="print_snowflake_config",
-        python_callable=print_snowflake_config
-    )
 
     start_refresh = EmptyOperator(task_id="start_refresh_marker")
+
+    def debug_airflow_connection():
+        from airflow.hooks.base import BaseHook
+        conn = BaseHook.get_connection("snowflake_conn")
+        print("Airflow Connection Debug:")
+        print("Host:", conn.host)
+        print("Schema:", conn.schema)
+        print("Login:", conn.login)
+        print("Password:", conn.password)
+        print("Extra JSON:", conn.extra_dejson)
+
+    debug_connection = PythonOperator(
+        task_id="debug_airflow_connection",
+        python_callable=debug_airflow_connection
+    )
 
     refresh_engagement = SQLExecuteQueryOperator(
         task_id="refresh_engagement_table",
@@ -73,6 +76,6 @@ def refresh_iceberg_tables_dag():
 
     end_refresh = EmptyOperator(task_id="end_refresh_marker")
 
-    test_connection >> print_conn_config >> start_refresh >> refresh_engagement >> refresh_pageviews >> refresh_users >> end_refresh
+    test_connection >> start_refresh >> debug_connection >> refresh_engagement >> refresh_pageviews >> refresh_users >> end_refresh
 
 refresh_iceberg_tables_dag()
