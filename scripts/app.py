@@ -267,6 +267,39 @@ else:
                 name=f"{page} (7-day avg)",
                 line=dict(color="black", dash="dash") 
                 )
+        
+        campaign_date = datetime.datetime.strptime("2025-02-01", "%Y-%m-%d")
+        fig.update_layout(
+            shapes=[
+                dict(
+                    type="line",
+                    x0=campaign_date,
+                    x1=campaign_date,
+                    y0=0,
+                    y1=1,
+                    yref="paper",  # span entire y-axis
+                    line=dict(
+                        color="red",
+                        width=2,
+                        dash="dash"
+                    )
+                )
+            ],
+            annotations=[
+                dict(
+                    x=campaign_date,
+                    y=1,
+                    yref="paper",
+                    showarrow=False,
+                    text="SEO campaign started on 2/1/25",
+                    bgcolor="red",
+                    font=dict(color="white"),
+                    xanchor="left",
+                    yanchor="bottom"
+                )
+            ]
+        )
+
         fig.update_layout(xaxis_title="Date", 
                           yaxis_title="Total Pageviews", 
                           legend_title="Page Type")
