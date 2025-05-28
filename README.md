@@ -52,3 +52,6 @@ Note. The I have joined the Data Engineering bootcamp that follows this and will
 - Use Search Console data for impression and ranking validation
 - Build a lightweight dashboard for editorial content planning
 - Predict decaying blog content and suggest updates using ML models
+
+# Dashboard
+https://aecapstone-kepdashboard.streamlit.app/

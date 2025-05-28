@@ -2,6 +2,7 @@ import os
 from datetime import datetime, timedelta
 from cosmos import DbtTaskGroup, ProjectConfig, ProfileConfig, RenderConfig, ExecutionConfig
 from airflow.operators.empty import EmptyOperator
+from airflow.operators.bash import BashOperator
 from airflow.decorators import dag
 from dotenv import load_dotenv
 
