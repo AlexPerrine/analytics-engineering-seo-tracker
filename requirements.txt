@@ -37,3 +37,10 @@ pyasn1_modules==0.4.2
 
 # Pin protobuf explicitly
 protobuf==4.23.4
+
+# For Streamlit
+streamlit
+plotly
+pandas
+snowflake-connector-python
+python-dotenv
