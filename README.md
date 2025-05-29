@@ -70,6 +70,7 @@ The timeline graph is not displayed unless you filter to a specific page due to 
 
 ![Dashboard Demo](assets/Dashboard.gif)
 
+If you want to play around with the dashboard click the link!
 https://aecapstone-kepdashboard.streamlit.app/
 
 # End Results
