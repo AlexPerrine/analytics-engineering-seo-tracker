@@ -68,6 +68,8 @@ The dashboard was created using Streamlit. This was my first time using the dash
 
 The timeline graph is not displayed unless you filter to a specific page due to cluttering.
 
+![Dashboard Demo](assets/dashboard.gif)
+
 https://aecapstone-kepdashboard.streamlit.app/
 
 # End Results
