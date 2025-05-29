@@ -4,6 +4,7 @@ project_secrets/
 venv/
 __pycache__/
 .git
+logs/
 
 .DS_Store
 
