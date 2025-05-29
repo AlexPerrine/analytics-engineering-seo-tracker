@@ -14,9 +14,9 @@ The goal is to empower Kristen Elizabeth Photography, a high-end family and seni
 
 | Source        | Description                           | Format | Phase     |
 |---------------|---------------------------------------|--------|-----------|
-| **Pageviews** | Live pageview/session data            | API    | AE (Live) |
-| **Engagement**| Live user engagement and event data   | API    | AE (Live) |
-| **User Data** | Live demographic and user-level data  | API    | AE (Live) |
+| **Pageviews** | Live pageview/session data            | API    | AE |
+| **Engagement**| Live user engagement and event data   | API    | AE |
+| **User Data** | Live demographic and user-level data  | API    | AE |
 
 ### Technologies
 
@@ -26,6 +26,7 @@ The goal is to empower Kristen Elizabeth Photography, a high-end family and seni
 | **Snowflake** | Clean, modeled warehouse layer for metrics and dimensional modeling |
 | **dbt**       | Build fact/dim models, qualtity testing, transformations               |
 | **Airflow**   | Schedule and orchestrate ingestion, scraping, and enrichment tasks  |
+| **Streamlit**   | Data visualization tool using python and hosted online  |
 
 ## Workflow
 <ol>
@@ -72,4 +73,8 @@ https://aecapstone-kepdashboard.streamlit.app/
 # End Results
 My wife and I did a strong SEO campaign on the website by optimizing the keywords for her niches (senior and family photography) webpages. We also created 30+ blogs to help drive traffic to the website. The bad part about SEO is it takes 3-6 months for there to be a visible change to the number of visitors to the website.
 
-For example, on the timeline graph for the senior_page, I have a red line when we started the SEO optimization on February 1st 2025, you can see that the traffic to the website has increase dramatically. We can also see this in the number of bookings she has recieved. For the first time in her business's 4 years, she has completely booked out for the months of June, July and August. I will say that it is because of the SEO optimization we did that we can clearly see on the timeline. She is currently on pace to double her revenue from 2024 and double the number of senior photography sessions booked year over year.
+For example, on the timeline graph for the senior_page, I have a red line when we started the SEO optimization on February 1st 2025, you can see that the traffic to the website has increase dramatically. We can also see this in the number of bookings she has recieved. For the first time in her business's 4 years, she has completely booked out for the months of June, July and August. 
+
+I will say that it is because of the SEO optimization we did that we can clearly see on the timeline. She is currently on pace to double her revenue from 2024 and double the number of senior photography sessions booked year over year.
+
+The end user of the dashboard is my wife and she has said that she has learned more from this dashboard than what Google Analytics provides because GA is not user friendly to people who are not as technical. 
