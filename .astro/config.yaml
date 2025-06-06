@@ -3,9 +3,9 @@ project:
 skip_parse: false
 verbosity: debug
 webserver:
-    port: "8082"
+    port: "8083"
 postgres:
-    port: "5432"
+    port: "5433"
 env:
     AIRFLOW__CORE__LOAD_EXAMPLES: "False"
 python:
